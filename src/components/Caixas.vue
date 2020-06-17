@@ -11,7 +11,11 @@
 <script>
 export default {
 name :"Caixas",
-props:['caixinhas']
+computed: {
+  caixinhas(){
+    return this.$store.state.caixinhas
+  } 
+}
 }
 </script>
 

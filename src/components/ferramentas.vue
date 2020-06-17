@@ -15,7 +15,7 @@
            </div>
            <div>
                <input type="text" placeholder="Digite o nome da caixa" v-model="titulo">
-               <button @click="alterarTexto">OK</button>
+               <button @click="alteraTexto">OK</button>
                
            </div>
      
@@ -25,7 +25,12 @@
 <script>
 export default {
 name: "Ferramentas",
-props: ['caixinhas'],
+
+computed: {
+    caixinhas(){
+        return this.$store.state.caixinhas
+    } 
+},
 data: function(){
     return{
         cores: ['background: brown' , 'background: white' , 'background: green' , 'background: yellow' , 'background: purple'] ,
@@ -34,14 +39,14 @@ data: function(){
     }
 } , methods:{
     alteraCor: function (cor){
-        this.$emit('alteraCor' , {
+        this.$store.commit('alteraCor' , {
             cor: cor ,
             caixa: this.caixaSel
         })
     } , 
     
     alteraTexto: function() {
-        this.$emit('alterouTexto', {
+        this.$store.commit('alterouTexto', {
             titulo: this.titulo ,
             caixa : this.caixaSel
         })
